@@ -132,7 +132,6 @@ export default function QuotationPage() {
       headStyles: { fillColor: [234, 88, 12] },
     })
 
-    // Removed the (doc as any) TypeScript casting
     const finalY = doc.lastAutoTable.finalY + 10
     doc.text(`Subtotal: ₹${generatedQuotation.subtotal.toLocaleString("en-IN")}`, 140, finalY)
     doc.text(
@@ -166,7 +165,6 @@ export default function QuotationPage() {
     Create and manage project quotations
   </p>
 </div>
-
 
       <Card>
         <CardHeader>
