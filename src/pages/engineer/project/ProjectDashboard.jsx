@@ -261,10 +261,9 @@ export default function ProjectDashboard() {
   <p className="mt-3 text-[11px] text-slate-500 font-bold uppercase">
     GPS-based project boundary
   </p>
-</div>
-
-
+</div>  
       
     </div>
   );
+
 }
