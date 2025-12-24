@@ -18,10 +18,7 @@ import {
   Search
 } from "lucide-react";
 
-/**
- * KPI Stat Card
- * Enhanced with trend indicators and better visual depth
- */
+/*** KPI Stat Card*/
 const StatCard = ({ title, value, icon: Icon, color, trend }) => (
   <div className="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm hover:shadow-md transition-all duration-300 group">
     <div className="flex justify-between items-start mb-4">
@@ -42,9 +39,7 @@ const StatCard = ({ title, value, icon: Icon, color, trend }) => (
   </div>
 );
 
-/**
- * Progress Bar Component
- */
+/*** Progress Bar Component*/
 const ProgressBar = ({ progress, status }) => (
   <div className="w-full mt-3">
     <div className="flex justify-between items-center mb-1 text-[10px] font-bold uppercase tracking-wider text-slate-400">
@@ -60,9 +55,7 @@ const ProgressBar = ({ progress, status }) => (
   </div>
 );
 
-/**
- * MAIN DASHBOARD
- */
+/*** MAIN DASHBOARD*/
 export default function Dashboard() {
   const navigate = useNavigate();
 
@@ -71,8 +64,7 @@ export default function Dashboard() {
   const authUser = JSON.parse(localStorage.getItem("authUser"));
 const OWNER_ID = authUser?.id;
 
-
-  // Mock data initialization
+  // Mock data 
   useEffect(() => {
     const seedData = () => {
       if (!localStorage.getItem("projects")) {
@@ -329,10 +321,8 @@ const OWNER_ID = authUser?.id;
               </button>
             </div>
           </div>
-
         </div>
-      </main>
-      
+      </main>    
     </div>
   );
 }
