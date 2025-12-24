@@ -9,9 +9,7 @@ import {
 
 const ENGINEER_ID = "eng-1";
 
-/* =======================
-   Small Compact Stat Card
-======================= */
+{/* ================= Small Compact Stat Card ================= */}
 const StatCard = ({ title, value, icon: Icon, colorClass }) => (
   <div className="bg-white p-3 rounded-xl border border-slate-200 shadow-sm flex items-center gap-3">
     <div className={`p-2 rounded-lg ${colorClass}`}>
@@ -143,4 +141,5 @@ export default function EngineerDashboard() {
 
     </div>
   );
+
 }
