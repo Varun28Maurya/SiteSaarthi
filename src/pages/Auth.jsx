@@ -20,12 +20,10 @@ const ConstructionAuthIndia = () => {
     const [isLogin, setIsLogin] = useState(true);
     const [step, setStep] = useState('FORM'); // 'FORM' or 'OTP'
     const [role, setRole] = useState('');
-    // Form State
     const [mobile, setMobile] = useState('');
     const [fullName, setFullName] = useState('');
     const [companyName, setCompanyName] = useState('');
     const [otp, setOtp] = useState('');
-    // Error State
     const [error, setError] = useState('');
     // Handlers
     const handleNameChange = (e) => {
@@ -56,19 +54,17 @@ const ConstructionAuthIndia = () => {
 
   const existingUser = findUserByPhone(mobile);
 
-  // 🚫 Login but user not found
   if (isLogin && !existingUser) {
     setError("Number not registered. Please sign up.");
     return;
   }
 
-  // 🚫 Signup but user already exists
   if (!isLogin && existingUser) {
     setError("User already exists. Please log in.");
     return;
   }
 
-  // ✅ Proceed to OTP
+  //  Proceed to OTP
   const generatedOtp = Math.floor(1000 + Math.random() * 9000).toString();
   otpRef.current = generatedOtp;
 
@@ -81,8 +77,6 @@ const ConstructionAuthIndia = () => {
 
   setStep("OTP");
 };
-
-
 
     const handleVerify = (e) => {
   e.preventDefault();
@@ -104,11 +98,11 @@ const ConstructionAuthIndia = () => {
   const existingUser = findUserByPhone(mobile);
   let user;
 
-  // ✅ LOGIN
+  // LOGIN
   if (isLogin) {
     user = existingUser;
   }
-  // ✅ SIGNUP
+  // SIGNUP
   else {
     if (!role) {
       setError("Please select a role.");
@@ -121,7 +115,7 @@ const ConstructionAuthIndia = () => {
       phone: mobile,
       role
     };
-
+      
     // simulate DB write
     const db = JSON.parse(localStorage.getItem("users")) || [];
     db.push(user);
@@ -131,7 +125,6 @@ const ConstructionAuthIndia = () => {
   localStorage.setItem("authUser", JSON.stringify(user));
   setShowSuccess(true);
 };
-
 
     const handleContinue = () => {
   setShowSuccess(false);
@@ -311,10 +304,10 @@ const ConstructionAuthIndia = () => {
                                 </div>
                             </div>
 
-                            {/* 6. Error Red (#DC2626) */}
+                            {/* 6. Error  */}
                             {error && <p className="text-[#DC2626] text-xs font-semibold ml-1">{error}</p>}
 
-                            {/* 1. Primary Blue Button (#0B3C5D) with Hover (#1E40AF) */}
+                            {/* 1. Primary  Button with Hover  */}
                             <button className="w-full bg-[#0B3C5D] hover:bg-[#1E40AF] text-white font-bold py-3.5 rounded-xl flex items-center justify-center gap-2 shadow-lg shadow-[#0B3C5D]/30 transition-all mt-6">
                                 {isLogin ? 'Get OTP' : 'Create Account'}
                                 <ArrowRight size={20} />
