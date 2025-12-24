@@ -25,9 +25,7 @@ const ConstructionAuthIndia = () => {
     const [companyName, setCompanyName] = useState('');
     const [otp, setOtp] = useState('');
     const [error, setError] = useState('');
-    // Handlers
     const handleNameChange = (e) => {
-        // Only allow letters and spaces
         const val = e.target.value;
         if (/^[a-zA-Z\s]*$/.test(val)) {
             setFullName(val);
@@ -36,7 +34,6 @@ const ConstructionAuthIndia = () => {
     const findUserByPhone = (phone) => {
   const owner = details.owners.find(o => o.phone === phone);
   if (owner) return owner;
-
   const engineer = details.engineers.find(e => e.phone === phone);
   if (engineer) return engineer;
 
@@ -147,7 +144,6 @@ const ConstructionAuthIndia = () => {
 
     return (
 
-        // 3. Off-White / Light Background (#F4F4F5)
         <div className="min-h-screen bg-[#F4F4F5] flex items-center justify-center p-4 font-sans text-[#111827]">
             {showSuccess && (
                 <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40">
