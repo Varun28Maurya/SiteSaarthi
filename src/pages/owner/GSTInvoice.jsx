@@ -117,7 +117,6 @@ export default function GSTInvoicePage() {
       headStyles: { fillColor: [234, 88, 12] },
     })
 
-    // Removed the (doc as any) type casting
     const finalY = doc.lastAutoTable.finalY + 10
     doc.text(`Subtotal: ₹${subtotal.toLocaleString("en-IN")}`, 140, finalY)
 
@@ -147,7 +146,6 @@ export default function GSTInvoicePage() {
     Back
   </button>
 
-  {/* Title */}
   <h2 className="text-3xl font-bold leading-tight">
     GST Invoice
   </h2>
@@ -156,9 +154,6 @@ export default function GSTInvoicePage() {
     Generate GST compliant tax invoices
   </p>
 </div>
-
-
-
 
       <Card>
         <CardHeader>
