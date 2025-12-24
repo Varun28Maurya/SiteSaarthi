@@ -12,6 +12,7 @@ export default defineConfig({
       includeAssets: [
         "favicon.svg",
         "apple-touch-icon.png",
+        "SiteSaarthiLogo.png",
       ],
 
       manifest: {
