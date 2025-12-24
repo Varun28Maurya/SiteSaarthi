@@ -7,7 +7,6 @@ import OwnerSidebar from "../sidebar/OwnerSidebar";
 import EngineerSidebarGlobal from "../sidebar/EngineerSidebarGlobal";
 import EngineerSidebarProject from "../sidebar/EngineerSidebarProject";
 import OwnerBottomNav from "../sidebar/OwnerSidebarMobile";
-import SiteSaarthiLogo from "../../assets/SiteSaarthiLogo.png";
 import EngineerSidebarGlobalMobile from "../sidebar/EngineerSidebarGlobalMobile";
 import EngineerSidebarProjectMobile from "../sidebar/EngineerSidebarProjectMobile";
 
@@ -52,10 +51,11 @@ export default function AppLayout({
           {/* LEFT: App Identity */}
           <div className="flex items-center gap-2 sm:gap-3">
             <img
-              src={SiteSaarthiLogo}
-              alt="SiteSaarthi"
-              className="h-8 w-auto sm:h-9"
-            />
+  src="/SiteSaarthiLogo.png"
+  alt="SiteSaarthi"
+  className="h-8 w-auto sm:h-9"
+/>
+
 
 
             <h1 className="text-base sm:text-lg font-bold text-slate-900 truncate max-w-[120px] sm:max-w-none">
