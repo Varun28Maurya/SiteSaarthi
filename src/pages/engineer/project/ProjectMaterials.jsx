@@ -70,7 +70,7 @@ export default function EngineerMaterials() {
       : materials.filter(m => m.status === filter);
 
   return (
-    /* 🔥 FIXED CONTAINER */
+
     <div className="w-full px-3 sm:px-6 lg:px-10 space-y-6">
 
       {/* ===== HEADER ===== */}
@@ -209,5 +209,4 @@ export default function EngineerMaterials() {
       )}
     </div>
   );
-
 }
