@@ -30,7 +30,6 @@ export default function AppLayout({
         ? <EngineerSidebarProject />
         : <EngineerSidebarGlobal />;
     }
-
     return null;
   };
 
@@ -41,7 +40,7 @@ export default function AppLayout({
       <aside className="w-64 bg-[#0B3C5D] text-white hidden lg:block">
         {renderSidebar()}
       </aside>
-
+      
       {/* Main Area */}
       <div className="flex-1 flex flex-col min-w-0">
 
@@ -55,8 +54,6 @@ export default function AppLayout({
   alt="SiteSaarthi"
   className="h-8 w-auto sm:h-9"
 />
-
-
 
             <h1 className="text-base sm:text-lg font-bold text-slate-900 truncate max-w-[120px] sm:max-w-none">
               SiteSaarthi
@@ -93,8 +90,7 @@ export default function AppLayout({
           </div>
 
         </header>
-
-
+        
         {/* Content - pb-24 ensures visibility above mobile nav */}
         <main className="flex-1 overflow-y-auto p-4 sm:p-6 pb-24 lg:pb-6">
           <Outlet />
@@ -110,3 +106,4 @@ export default function AppLayout({
     </div>
   );
 }
+
