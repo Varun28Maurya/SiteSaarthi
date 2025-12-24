@@ -1,5 +1,3 @@
-// src/utils/geo.js
-
 // Haversine formula to calculate distance between two GPS points
 export function getDistanceInMeters(lat1, lon1, lat2, lon2) {
   const R = 6371000; // Earth radius in meters
@@ -19,3 +17,4 @@ export function getDistanceInMeters(lat1, lon1, lat2, lon2) {
 
   return Math.round(R * c); // distance in meters
 }
+
