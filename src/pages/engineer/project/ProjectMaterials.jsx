@@ -173,7 +173,7 @@ export default function EngineerMaterials() {
 
       {/* ===== MODAL ===== */}
       {showForm && (
-        <div className="fixed inset-0 bg-black/60 z-50 flex items-end sm:items-center justify-center">
+        <div className="fixed inset-0 bg-black/60 z-[9999] flex items-end sm:items-center justify-center">
           <div className="bg-white w-full max-w-lg rounded-t-3xl sm:rounded-3xl p-6 space-y-4">
             <div className="flex justify-between">
               <h3 className="font-black uppercase">New Material Request</h3>
@@ -209,4 +209,5 @@ export default function EngineerMaterials() {
       )}
     </div>
   );
+
 }
