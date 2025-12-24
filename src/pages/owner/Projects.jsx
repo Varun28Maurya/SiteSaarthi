@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useMemo } from "react";
+import { useNavigate } from "react-router-dom";
 import { 
   Plus, 
   Share2, 
@@ -13,17 +14,11 @@ import {
   CheckCircle2,
   LayoutGrid
 } from "lucide-react";
-
-// Helper for Invite Code
 const generateInviteCode = () =>
   Math.random().toString(36).substring(2, 8).toUpperCase();
-
-/**
- * PROJECT CARD COMPONENT
- */
+/*** PROJECT CARD COMPONENT*/
 const ProjectCard = ({ project, onViewDetails }) => {
   const [copied, setCopied] = useState(false);
-
   const handleCopy = (e) => {
     e.stopPropagation();
     e.preventDefault();
@@ -37,7 +32,6 @@ const ProjectCard = ({ project, onViewDetails }) => {
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
   };
-
   return (
     <div className="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 group">
       {/* Header with Orange Accent */}
@@ -63,7 +57,6 @@ const ProjectCard = ({ project, onViewDetails }) => {
           </div>
         </div>
       </div>
-
       {/* Body */}
       <div className="p-6 space-y-5">
         <div className="grid grid-cols-2 gap-4">
@@ -82,7 +75,6 @@ const ProjectCard = ({ project, onViewDetails }) => {
             </div>
           </div>
         </div>
-
         {/* Progress Bar */}
         <div>
           <div className="flex justify-between items-end mb-2">
@@ -97,7 +89,6 @@ const ProjectCard = ({ project, onViewDetails }) => {
           </div>
         </div>
       </div>
-
       {/* Footer Actions */}
       <div className="px-6 py-4 bg-slate-50/50 flex gap-2 border-t border-slate-50">
         <button
@@ -107,7 +98,6 @@ const ProjectCard = ({ project, onViewDetails }) => {
           View Details
           <ChevronRight size={16} />
         </button>
-
         <button 
           onClick={handleCopy}
           className={`p-2 rounded-lg border transition-all flex items-center justify-center ${
@@ -121,18 +111,13 @@ const ProjectCard = ({ project, onViewDetails }) => {
     </div>
   );
 };
-
-/**
- * MAIN COMPONENT
- */
+/*** MAIN COMPONENT*/
 export default function OwnerProjects() {
+  const navigate = useNavigate();
   const [showAddProject, setShowAddProject] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const [projects, setProjects] = useState([]);
-  
-  // Mock User
   const user = { id: "owner-1", name: "Rajesh Khanna" };
-
   useEffect(() => {
     const stored = localStorage.getItem("projects");
     if (!stored) {
@@ -146,22 +131,18 @@ export default function OwnerProjects() {
       setProjects(JSON.parse(stored).filter(p => p.ownerId === user.id));
     }
   }, []);
-
   const filteredProjects = useMemo(() => {
     return projects.filter(p => 
       p.name.toLowerCase().includes(searchQuery.toLowerCase()) || 
       p.location.toLowerCase().includes(searchQuery.toLowerCase())
     );
   }, [projects, searchQuery]);
-
   const handleViewDetails = (id) => {
-    console.log("Navigating to details for:", id);
-  };
-
+  navigate(`/owner/projects/${id}`);
+};
   return (
     <div className="min-h-screen bg-slate-50 p-6 md:p-8">
       <div className="max-w-7xl mx-auto space-y-8">
-        
         {/* Page Header */}
         <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6">
           <div className="space-y-1">
@@ -172,7 +153,6 @@ export default function OwnerProjects() {
               Manage and monitor your active construction sites.
             </p>
           </div>
-
           <div className="flex flex-col sm:flex-row items-center gap-3">
             <div className="relative w-full sm:w-64">
               <Search size={18} className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" />
@@ -193,7 +173,6 @@ export default function OwnerProjects() {
             </button>
           </div>
         </div>
-
         {/* PROJECTS GRID */}
         {filteredProjects.length > 0 ? (
           <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
@@ -219,7 +198,6 @@ export default function OwnerProjects() {
           </div>
         )}
       </div>
-
       {/* ADD PROJECT MODAL */}
       {showAddProject && (
         <AddProjectModal
@@ -230,19 +208,14 @@ export default function OwnerProjects() {
     </div>
   );
 }
-
-/**
- * MODAL COMPONENT
- */
+/*** MODAL COMPONENT*/
 function AddProjectModal({ ownerId, onClose }) {
   const [name, setName] = useState("");
   const [location, setLocation] = useState("");
   const [budgetSlab, setBudgetSlab] = useState("");
   const [inviteCode] = useState(generateInviteCode());
-
   const handleCreate = () => {
     if (!name || !location || !budgetSlab) return;
-
     const existing = JSON.parse(localStorage.getItem("projects")) || [];
     const newProject = {
       id: `proj-${Date.now()}`,
@@ -254,12 +227,10 @@ function AddProjectModal({ ownerId, onClose }) {
       inviteCode,
       progress: 0,
     };
-
     localStorage.setItem("projects", JSON.stringify([...existing, newProject]));
     onClose();
     window.location.reload();
   };
-
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/40 backdrop-blur-sm">
       <div className="relative w-full max-w-md bg-white rounded-2xl shadow-2xl p-6 space-y-6">
@@ -271,7 +242,6 @@ function AddProjectModal({ ownerId, onClose }) {
             <X size={20} />
           </button>
         </div>
-
         <div className="space-y-4">
           <div className="space-y-1">
             <label className="text-xs font-bold text-slate-500 uppercase tracking-wider">
@@ -284,7 +254,6 @@ function AddProjectModal({ ownerId, onClose }) {
               placeholder="e.g., Skyline Residency"
             />
           </div>
-
           <div className="space-y-1">
             <label className="text-xs font-bold text-slate-500 uppercase tracking-wider">
               Location
@@ -296,7 +265,6 @@ function AddProjectModal({ ownerId, onClose }) {
               placeholder="e.g., Worli, Mumbai"
             />
           </div>
-
           <div className="space-y-1">
             <label className="text-xs font-bold text-slate-500 uppercase tracking-wider">
               Budget Slab
@@ -312,7 +280,6 @@ function AddProjectModal({ ownerId, onClose }) {
               <option value=">20L">Above ₹20L</option>
             </select>
           </div>
-
           <div className="bg-slate-50 border border-dashed border-slate-300 rounded-lg p-4">
             <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-1">
               Engineer Access Key
@@ -322,7 +289,6 @@ function AddProjectModal({ ownerId, onClose }) {
             </p>
           </div>
         </div>
-
         <div className="flex gap-3">
           <button
             onClick={onClose}
