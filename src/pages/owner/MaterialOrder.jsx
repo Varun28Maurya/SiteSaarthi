@@ -31,7 +31,6 @@ export default function MaterialOrderDocuments() {
   date: "",
 })
 
-
   const materialOrders = [
     {
       id: "MO-001",
@@ -60,8 +59,6 @@ export default function MaterialOrderDocuments() {
 
     if (filter.status !== "all" && mo.status !== filter.status) return false
     if (filter.date && mo.date !== filter.date) return false
-
-    
 
     return true
   })
@@ -156,7 +153,7 @@ export default function MaterialOrderDocuments() {
     },
   })
 
-  /* ===== TOTAL (PROPER ALIGNMENT) ===== */
+  /* ===== TOTAL  ===== */
   const finalY = pdf.lastAutoTable.finalY + 8
 
   pdf.setFont("helvetica", "bold")
@@ -187,9 +184,6 @@ export default function MaterialOrderDocuments() {
   pdf.save(`MaterialOrder-${order.id}.pdf`)
 }
 
-
-
-
   /* ================= UI ================= */
 
   return (
@@ -212,7 +206,6 @@ export default function MaterialOrderDocuments() {
     View and download material order documents
   </p>
 </div>
-
 
       <Card>
         <CardHeader>
@@ -240,7 +233,6 @@ export default function MaterialOrderDocuments() {
     setFilter({ ...filter, date: e.target.value })
   }
 />
-
 
             <Select
               value={filter.status}
