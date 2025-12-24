@@ -89,7 +89,7 @@ function App() {
             </RequireAuth>
           }
         >
-          {/* ✅ ADD THIS */}
+  
           <Route index element={<Navigate to="dashboard" replace />} />
 
           <Route path="dashboard" element={<OwnerDashboard />} />
@@ -115,7 +115,7 @@ function App() {
             </RequireAuth>
           }
         >
-          {/* ✅ ADD THIS */}
+          
           <Route index element={<Navigate to="dashboard" replace />} />
 
           <Route path="dashboard" element={<EngineerDashboard />} />
