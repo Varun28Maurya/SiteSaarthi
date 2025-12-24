@@ -101,7 +101,6 @@ export default function MaterialsPage() {
     return 0
   })
 
-
   return (
     <div className="space-y-6">
       <div>
