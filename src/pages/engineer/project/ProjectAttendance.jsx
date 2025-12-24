@@ -111,7 +111,6 @@ export default function ProjectAttendance() {
   return (
     <div className="w-full space-y-6 px-4 sm:px-6 lg:px-10">
 
-
       {/* HEADER */}
       <div className="flex flex-col sm:flex-row justify-between gap-4">
         <div>
@@ -249,5 +248,4 @@ export default function ProjectAttendance() {
       )}
     </div>
   );
-
 }
