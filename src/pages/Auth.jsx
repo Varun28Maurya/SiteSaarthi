@@ -185,11 +185,16 @@ const ConstructionAuthIndia = () => {
                 {/* Header */}
                 <div className="text-center mb-8">
                     {/* 1. Deep Industrial Blue Background (#0B3C5D) */}
-                    <div className="inline-block bg-[#0B3C5D] p-3 rounded-xl mb-3 shadow-lg shadow-[#0B3C5D]/20">
-                        <HardHat size={32} className="text-white" />
-                    </div>
+                    <div className="inline-block bg-white p-3 rounded-xl mb-3 shadow-lg">
+  <img
+    src="/SiteSaarthiLogo.png"
+    alt="SiteSaarthi Logo"
+    className="h-10 w-auto mx-auto"
+  />
+</div>
+
                     {/* 4. Charcoal / Dark Text (#111827) */}
-                    <h1 className="text-2xl font-bold text-[#111827]">SiteSetu</h1>
+                    <h1 className="text-2xl font-bold text-[#111827]">SiteSaarthi</h1>
                     {/* 4. Secondary Text (#374151) */}
                     <p className="text-[#374151] text-sm mt-1">Construction Field Management</p>
                 </div>
@@ -375,3 +380,4 @@ const ConstructionAuthIndia = () => {
 };
 
 export default ConstructionAuthIndia;
+
