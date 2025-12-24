@@ -195,7 +195,7 @@ export default function ProjectAttendance() {
 
       {/* ADD WORKER MODAL */}
       {showForm && (
-        <div className="fixed inset-0 bg-black/60 flex items-end sm:items-center justify-center z-50">
+        <div className="fixed inset-0 bg-black/60 flex items-end sm:items-center justify-center z-[9999]">
           <div className="bg-white w-full max-w-lg rounded-t-3xl sm:rounded-3xl p-6 space-y-4">
             <div className="flex justify-between">
               <h3 className="font-black uppercase">Worker Entry</h3>
@@ -249,4 +249,5 @@ export default function ProjectAttendance() {
       )}
     </div>
   );
+
 }
