@@ -3,7 +3,6 @@ import { useParams, useNavigate } from "react-router-dom";
 import projects from "../../data/projects.json";
 import ProjectMap from "../../components/maps/ProjectMap";
 
-
 export default function ProjectDetails() {
   const { projectId } = useParams();
   const navigate = useNavigate();
@@ -187,7 +186,6 @@ export default function ProjectDetails() {
           radius={project.radius}
         />
       </div>
-
     </div>
   );
 }
