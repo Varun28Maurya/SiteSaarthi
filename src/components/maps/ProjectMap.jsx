@@ -1,5 +1,3 @@
-// components/maps/ProjectMap.jsx
-
 import { MapContainer, TileLayer, Marker, Circle } from "react-leaflet";
 import { useEffect, useState } from "react";
 import L from "leaflet";
@@ -85,3 +83,4 @@ export default function ProjectMap({ lat, lng, radius, onStatusChange }) {
     </div>
   );
 }
+
