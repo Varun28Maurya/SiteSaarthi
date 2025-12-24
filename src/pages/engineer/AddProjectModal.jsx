@@ -34,7 +34,6 @@ export default function AddProjectModal({ onClose, onAdd }) {
 
   return (
     <div className="fixed inset-0 z-[9999] bg-black/60 flex items-end sm:items-center justify-center">
-
       <div className="bg-white w-full rounded-t-3xl p-5 animate-slideUp">
 
         {/* HEADER */}
