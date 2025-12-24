@@ -185,13 +185,14 @@ const ConstructionAuthIndia = () => {
                 {/* Header */}
                 <div className="text-center mb-8">
                     {/* 1. Deep Industrial Blue Background (#0B3C5D) */}
-                    <div className="inline-block bg-white p-3 rounded-xl mb-3 shadow-lg">
+                    <div className="flex justify-center mb-4">
   <img
     src="/SiteSaarthiLogo.png"
     alt="SiteSaarthi Logo"
-    className="h-14 w-auto mx-auto"
+    className="h-20 w-auto"
   />
 </div>
+
 
                     {/* 4. Charcoal / Dark Text (#111827) */}
                     <h1 className="text-2xl font-bold text-[#111827]">SiteSaarthi</h1>
@@ -380,5 +381,6 @@ const ConstructionAuthIndia = () => {
 };
 
 export default ConstructionAuthIndia;
+
 
 
