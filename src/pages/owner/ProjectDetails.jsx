@@ -2,6 +2,8 @@ import { Users, Clock, ShieldCheck, ChevronRight } from "lucide-react";
 import { useParams, useNavigate } from "react-router-dom";
 import projects from "../../data/projects.json";
 import ProjectMap from "../../components/maps/ProjectMap";
+import ArchitectLayout from "../../components/architect/ArchitectLayout";
+
 
 export default function ProjectDetails() {
   const { projectId } = useParams();
@@ -185,6 +187,11 @@ export default function ProjectDetails() {
           lng={project.lng}
           radius={project.radius}
         />
+
+        <div className="mt-6">
+  <ArchitectLayout />
+</div>
+
       </div>
     </div>
   );

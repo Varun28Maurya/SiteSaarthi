@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import projects from "@/data/projects.json";
 import ProjectMap from "@/components/maps/ProjectMap";
-
+import ArchitectLayout from "../../../components/architect/ArchitectLayout";
 import {
   CheckCircle2,
   AlertTriangle,
@@ -262,7 +262,15 @@ export default function ProjectDashboard() {
     GPS-based project boundary
   </p>
 </div>  
-      
+      {/* ================= ARCHITECT LAYOUT ================= */}
+<div className="bg-white rounded-2xl p-6 border shadow-sm">
+  <h3 className="text-xs font-black uppercase text-slate-400 mb-4">
+    Floor Plan & Visualization
+  </h3>
+
+  <ArchitectLayout />
+</div>
+
     </div>
   );
 

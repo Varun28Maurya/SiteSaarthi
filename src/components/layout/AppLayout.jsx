@@ -1,8 +1,9 @@
 import { Menu, Bell, Wifi, WifiOff } from "lucide-react";
+import { useState } from "react";
 import { Outlet, useLocation } from "react-router-dom";
 import { User } from "lucide-react";
+import { Volume2 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
-
 import OwnerSidebar from "../sidebar/OwnerSidebar";
 import EngineerSidebarGlobal from "../sidebar/EngineerSidebarGlobal";
 import EngineerSidebarProject from "../sidebar/EngineerSidebarProject";
@@ -17,6 +18,7 @@ export default function AppLayout({
 }) {
   const location = useLocation();
   const navigate = useNavigate();
+  const [showComingSoon, setShowComingSoon] = useState(false);
 
   const isEngineer = location.pathname.startsWith("/engineer");
   const isProjectWorkspace = location.pathname.includes("/engineer/projects/");
@@ -73,10 +75,23 @@ export default function AppLayout({
               <span className="hidden xs:inline">{isOffline ? "OFFLINE" : "ONLINE"}</span>
             </button>
 
-            <button className="relative p-2 text-slate-600">
+            {/* Read Aloud */}
+            <button
+  title="Read screen aloud"
+  onClick={() => setShowComingSoon(true)}
+  className="p-2 text-slate-600 hover:bg-slate-100 rounded-full transition"
+>
+  <Volume2 size={20} />
+</button>
+
+
+
+{/* Notifications */}
+<button className="relative p-2 text-slate-600">
   <Bell size={20} />
   <span className="absolute top-2 right-2 w-2 h-2 bg-red-500 rounded-full border-2 border-white"></span>
 </button>
+
 
 <button
   onClick={() =>
@@ -103,6 +118,44 @@ export default function AppLayout({
         {isEngineer && !isProjectWorkspace && <EngineerSidebarGlobalMobile />}
         {isEngineer && isProjectWorkspace && <EngineerSidebarProjectMobile />}
       </div>
+
+      {showComingSoon && (
+  <div className="fixed inset-0 z-50 flex items-center justify-center">
+    
+    {/* Background Overlay */}
+    <div
+      className="absolute inset-0 bg-black/40"
+      onClick={() => setShowComingSoon(false)}
+    />
+
+    {/* Modal Box */}
+    <div className="relative bg-white rounded-2xl shadow-xl w-[90%] max-w-sm p-6">
+      
+      <div className="flex items-center gap-3 mb-4">
+        <div className="w-10 h-10 rounded-full bg-indigo-50 flex items-center justify-center">
+          <Volume2 size={20} className="text-indigo-600" />
+        </div>
+        <h3 className="text-lg font-semibold text-slate-900">
+          Coming Soon
+        </h3>
+      </div>
+
+      <p className="text-sm text-slate-600 mb-6">
+        The <span className="font-medium">Read Aloud</span> feature is under
+        development and will be available in an upcoming update.
+      </p>
+
+      <div className="flex justify-end">
+        <button
+          onClick={() => setShowComingSoon(false)}
+          className="px-4 py-2 text-sm font-semibold rounded-lg bg-indigo-600 text-white hover:bg-indigo-700 transition"
+        >
+          OK
+        </button>
+      </div>
+    </div>
+  </div>
+)}
     </div>
   );
 }
