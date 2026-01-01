@@ -1,4 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
+import * as THREE from "three";
+import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
+import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 
 /* ---------- 2D FLOOR PLAN ---------- */
 const FloorPlan2D = () => (
@@ -56,10 +59,109 @@ const FloorPlan2D = () => (
 /* ---------- MAIN ARCHITECT MODULE ---------- */
 export default function ArchitectLayout() {
   const [view, setView] = useState("2D");
+  const mountRef = useRef(null);
+  useEffect(() => {
+  if (view !== "3D" || !mountRef.current) return;
+
+  const container = mountRef.current;
+
+  // Scene
+  const scene = new THREE.Scene();
+  scene.background = new THREE.Color(0xf5f5f5);
+
+  // Camera
+  const camera = new THREE.PerspectiveCamera(
+    45,
+    container.clientWidth / container.clientHeight,
+    0.1,
+    1000
+  );
+  camera.position.set(20, 20, 20);
+
+  // Renderer
+  const renderer = new THREE.WebGLRenderer({ antialias: true });
+  renderer.setSize(container.clientWidth, container.clientHeight);
+  renderer.shadowMap.enabled = true;
+  container.appendChild(renderer.domElement);
+
+  // Lights
+  scene.add(new THREE.AmbientLight(0xffffff, 0.8));
+  const dirLight = new THREE.DirectionalLight(0xffffff, 1);
+  dirLight.position.set(10, 20, 10);
+  scene.add(dirLight);
+
+  // Controls
+  const controls = new OrbitControls(camera, renderer.domElement);
+  controls.enableDamping = true;
+
+  // Load GLB
+  const loader = new GLTFLoader();
+loader.load("/models/house.glb", (gltf) => {
+  const model = gltf.scene;
+  scene.add(model);
+
+  // 🔲 Compute bounding box
+  const box = new THREE.Box3().setFromObject(model);
+  const size = box.getSize(new THREE.Vector3());
+  const center = box.getCenter(new THREE.Vector3());
+
+  // 🎯 Center the model
+  model.position.sub(center);
+
+  // 📸 Auto-fit camera
+  const maxDim = Math.max(size.x, size.y, size.z);
+  const fov = camera.fov * (Math.PI / 180);
+  let cameraZ = Math.abs(maxDim / 2 / Math.tan(fov / 2));
+
+  cameraZ *= 1.2; // adjust zoom here if needed
+
+  camera.position.set(cameraZ, cameraZ, cameraZ);
+  camera.lookAt(0, 0, 0);
+
+  // 🎮 Update controls
+  controls.target.set(0, 0, 0);
+  controls.minDistance = cameraZ * 0.5;
+  controls.maxDistance = cameraZ * 3;
+  controls.update();
+});
+
+
+  // 🔁 RESIZE HANDLER (THIS IS THE KEY)
+  const handleResize = () => {
+    if (!container) return;
+
+    const width = container.clientWidth;
+    const height = container.clientHeight;
+
+    camera.aspect = width / height;
+    camera.updateProjectionMatrix();
+    renderer.setSize(width, height);
+  };
+
+  window.addEventListener("resize", handleResize);
+
+  // Render loop
+  let frameId;
+  const animate = () => {
+    frameId = requestAnimationFrame(animate);
+    controls.update();
+    renderer.render(scene, camera);
+  };
+  animate();
+
+  // Cleanup
+  return () => {
+    window.removeEventListener("resize", handleResize);
+    cancelAnimationFrame(frameId);
+    controls.dispose();
+    renderer.dispose();
+  };
+}, [view]);
+
 
   return (
     <div className="bg-slate-50 p-4 md:p-6 rounded-xl border">
-      
+
       {/* ---------- 2D VIEW ---------- */}
       {view === "2D" && (
         <div className="flex flex-col items-center">
@@ -77,12 +179,11 @@ export default function ArchitectLayout() {
       {/* ---------- 3D VIEW ---------- */}
       {view === "3D" && (
         <div className="flex flex-col items-center">
-          <div className="w-full h-[50vh] bg-slate-900 rounded-xl flex flex-col items-center justify-center text-white border">
-            <h2 className="text-3xl font-bold">3D View</h2>
-            <p className="text-indigo-300 mt-2">
-              Three.js model will render here
-            </p>
-          </div>
+          <div
+            ref={mountRef}
+            className="w-full h-[50vh] bg-white rounded-xl border overflow-hidden"
+          />
+
 
           <button
             onClick={() => setView("2D")}
