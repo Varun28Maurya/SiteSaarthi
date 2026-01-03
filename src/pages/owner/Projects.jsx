@@ -274,10 +274,10 @@ function AddProjectModal({ ownerId, onClose }) {
               onChange={(e) => setBudgetSlab(e.target.value)}
               className="w-full p-2.5 bg-slate-50 border border-slate-200 rounded-lg focus:ring-2 focus:ring-[#0B3C5D]/20 focus:border-[#0B3C5D] outline-none transition-all text-sm"
             >
-              <option value="">Select Budget</option>
-              <option value="<5L">Below ₹5L</option>
-              <option value="5-20L">₹5–20L</option>
-              <option value=">20L">Above ₹20L</option>
+              <option value="">Select Budget (you can change this later)</option>
+              <option value="<5L">Below ₹5L – Basic site tracking & updates</option>
+              <option value="5-20L">₹5–20L – Advanced tracking & approvals</option>
+              <option value=">20L">Above ₹20L – Full control, reports & compliance</option>
             </select>
           </div>
           <div className="bg-slate-50 border border-dashed border-slate-300 rounded-lg p-4">
@@ -308,3 +308,4 @@ function AddProjectModal({ ownerId, onClose }) {
     </div>
   );
 }
+
