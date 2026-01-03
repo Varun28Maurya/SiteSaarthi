@@ -280,13 +280,21 @@ function AddProjectModal({ ownerId, onClose }) {
               <option value=">20L">Above ₹20L – Full control, reports & compliance</option>
             </select>
           </div>
-          <div className="bg-slate-50 border border-dashed border-slate-300 rounded-lg p-4">
-            <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-1">
-              Engineer Access Key
+          <div className="bg-slate-50 border border-dashed border-slate-300 rounded-lg p-4 space-y-3">
+            <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">
+              Engineer Access
             </p>
-            <p className="font-mono text-xl font-bold text-[#0B3C5D] tracking-widest">
-              {inviteCode}
-            </p>
+            <div className="flex items-center justify-between gap-3">
+              {/* ACCESS KEY */}
+              <p className="font-mono text-lg font-bold text-[#0B3C5D] tracking-widest">
+                {inviteCode}
+              </p>
+              {/* PURPLE SHARE LINK BOX */}
+              <div className="flex items-center gap-1 px-2.5 py-1.5 rounded-md bg-purple-100 text-purple-600 text-xs font-semibold">
+                <Share2 size={14} />
+                <span>Link</span>
+              </div>
+            </div>
           </div>
         </div>
         <div className="flex gap-3">
@@ -308,4 +316,5 @@ function AddProjectModal({ ownerId, onClose }) {
     </div>
   );
 }
+
 
